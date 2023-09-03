@@ -1,7 +1,7 @@
-# UIx Playground
+# ClojureScript Studio
 
-_Interactive ClojureScript playground running on bootstrapped ClojureScript_
+_Online coding sandbox tailored for web development_
 
-https://uix-playground.vercel.app/
+https://www.clojurescript.studio/
 
 For issue reports and feature requests only
