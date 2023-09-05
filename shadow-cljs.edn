@@ -13,6 +13,7 @@
               :output-dir "resources/public/out/bootstrap"
               :exclude #{cljs.js}
               :entries [cljs.js cljs.test
+                        studio.test
                         promesa.core
                         reagent.core reagent.dom
                         re-frame.core

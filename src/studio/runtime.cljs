@@ -1,7 +1,8 @@
 (ns studio.runtime
   (:require [cljs.env :as env]
             [cljs.js :as cljs]
-            [shadow.cljs.bootstrap.browser :as boot]))
+            [shadow.cljs.bootstrap.browser :as boot]
+            [studio.test]))
 
 (defonce compile-state-ref (env/default-compiler-env))
 
