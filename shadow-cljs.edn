@@ -1,0 +1,23 @@
+{:deps true
+ :dev-http {3000 "./resources/public/"}
+ :builds
+ {:runtime {:target :browser
+            :output-dir "resources/public/out"
+            :asset-path "/out"
+            :modules {:runtime {:entries [studio.runtime]}}
+            :js-options {:minimize-require false}
+            :compiler-options {:output-wrapper false}
+            :release {:compiler-options {:optimizations :simple}}}
+
+  :bootstrap {:target :bootstrap
+              :output-dir "resources/public/out/bootstrap"
+              :exclude #{cljs.js}
+              :entries [cljs.js cljs.test
+                        promesa.core
+                        reagent.core reagent.dom
+                        re-frame.core
+                        "react"
+                        "react-dom"
+                        "react-dom/client"]
+              :js-options {:minimize-require false}
+              :compiler-options {:output-wrapper false}}}}
