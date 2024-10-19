@@ -1,0 +1,12 @@
+[submodule "playground/deps/re-frame"]
+	path = playground/deps/re-frame
+	url = https://github.com/day8/re-frame.git
+[submodule "playground/deps/promesa"]
+	path = playground/deps/promesa
+	url = https://github.com/funcool/promesa.git
+[submodule "playground/deps/reagent"]
+	path = playground/deps/reagent
+	url = https://github.com/reagent-project/reagent.git
+[submodule "playground/deps/preo"]
+	path = playground/deps/preo
+	url = https://github.com/adamrenklint/preo.git

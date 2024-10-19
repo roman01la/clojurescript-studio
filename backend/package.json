@@ -1,0 +1,22 @@
+{
+  "name": "uix-playground-backend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "start": "wrangler dev --port 8788"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.15",
+    "@babel/generator": "^7.22.10",
+    "@babel/parser": "^7.22.14",
+    "@babel/plugin-transform-modules-commonjs": "^7.22.15",
+    "@babel/template": "^7.22.5",
+    "@babel/traverse": "^7.22.11",
+    "@babel/types": "^7.22.11",
+    "@cloudflare/workers-types": "^4.20230419.0",
+    "aurelia-path": "^1.1.7",
+    "itty-router": "^3.0.12",
+    "wrangler": "^3.6.0"
+  }
+}

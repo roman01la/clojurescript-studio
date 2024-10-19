@@ -1,0 +1,45 @@
+{:deps true
+ :dev-http {3000 "./"}
+ :builds
+ {:test {:target :browser
+         :output-dir "out"
+         :modules {:main {:entries [uix.test-runner]}}
+         :compiler-options {:output-feature-set :es2018}
+         :release {:compiler-options {:infer-externs true
+                                      :closure-defines {goog.DEBUG false}}}}
+
+  :linter-test {:target :browser
+                :output-dir "out"
+                :modules {:main {:entries [uix.linter-test]}}}
+
+  ;; === playground build config ===
+
+  :playground {:target :browser
+               :output-dir "out"
+               :asset-path "/out"
+               :module-loader true
+               :modules {:main {:entries [uix.playground.home]}
+                         :playground {:entries [uix.playground.editor]
+                                      :depends-on #{:main}}}
+               :devtools {:preloads [uix.playground.dev]}
+               :js-options {:minimize-require false}
+               :compiler-options {:output-wrapper false}
+               :release {:compiler-options {:infer-externs :auto
+                                            :optimizations :simple}}}
+  :bootstrap {:target :bootstrap
+              :output-dir "out/bootstrap"
+              :exclude #{cljs.js}
+              :entries [cljs.js
+                        uix.core uix.dom
+                        "react-query"
+                        "@react-three/fiber"
+                        #_"@react-three/drei"
+                        "react-router-dom"
+                        "three"
+                        "react"
+                        "react-dom"
+                        "react-dom/client"]
+              :js-options {:minimize-require false}
+              :compiler-options {:infer-externs :auto
+                                 :output-wrapper false
+                                 :warnings-as-errors true}}}}

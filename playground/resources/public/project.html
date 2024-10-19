@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="icon" type="image/png" href="/icon.png">
+    <title>ClojureScript Studio | Online coding sandbox tailored for web development</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/main.css">
+    <script src="https://js.sentry-cdn.com/48f602c6364f327869b750b4a65ad785.min.js" crossorigin="anonymous"></script>
+    <script>
+      window.Sentry?.onLoad(() => {
+        Sentry.init({
+          environment: "dev",
+          release: "8386975",
+          enabled: false,
+        });
+      });
+    </script>
+</head>
+<body>
+    <div id=root></div>
+    <script src=/out/shared.js integrity=sha384-TRXAQKuxpIj+XMDUvjnSg8lcKQYsJbJK3fvncxTyk+JDfEFk0CvDysFO4BV6myB0></script>
+    <script src=/out/main.js integrity=sha384-/rPpW1TOXQOJzq/PfOJqQhGTuXeoWKx9uY6XyH8QZ7JC0KbCdpPryqbqYgeH5eVd></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+{:deps true
+ :dev-http {3000 {:root "./resources/public/"
+                  :handler uix.playground.dev/handler}}
+ :builds
+ {;; drives the editor /p/:id
+  :playground {:target :browser
+               :output-dir "resources/public/out"
+               :asset-path "/out"
+               :module-loader true
+               :modules {:main {:entries [uix.playground.home]}
+                         :playground {:entries [uix.playground.editor]
+                                      :depends-on #{:main}}}
+               :compiler-options {:source-map true}
+               :devtools {:preloads [uix.playground.dev devtools.preload]}
+               :build-hooks [(uix.playground.build-hook/integrity-playground)
+                             (uix.playground.build-hook/configure-sentry)]}
+
+  ;; drives embeds /e/:id
+  :embed {:target :browser
+          :output-dir "resources/public/out"
+          :asset-path "/out"
+          :modules {:embed {:entries [uix.playground.embed]}}
+          :js-options {:minimize-require false}
+          :compiler-options {:output-wrapper false}
+          :release {:compiler-options {:optimizations :simple
+                                       :source-map true}}
+          :build-hooks [(uix.playground.build-hook/integrity-embed)]}
+
+  ;; drives editor embeds /ee/:id
+  :editor_embed {:target :browser
+                 :output-dir "resources/public/out"
+                 :asset-path "/out"
+                 :modules {:editor_embed {:entries [uix.playground.editor-embed]}}
+                 :js-options {:minimize-require false}
+                 :compiler-options {:output-wrapper false}
+                 :release {:compiler-options {:optimizations :simple
+                                              :source-map true}}
+                 :build-hooks [(uix.playground.build-hook/integrity-editor-embed)]}
+
+  ;; actual runtime that calls into the compiler
+  :runtime {:target :browser
+            :output-dir "resources/public/out"
+            :asset-path "/out"
+            :modules {:runtime {:entries [uix.playground.runtime]}}
+            :js-options {:minimize-require false}
+            :closure-defines {uix.playground.bus/RUNTIME true}
+            :compiler-options {:output-wrapper false}
+            :release {:compiler-options {:optimizations :simple
+                                         :source-map true}}
+            :build-hooks [(uix.playground.build-hook/integrity-runtime)]}
+
+  ;; precompiled libraries and cljs.core loaded at runtime
+  :bootstrap {:target :bootstrap
+              :output-dir "resources/public/out/bootstrap"
+              :exclude #{cljs.js}
+              :entries [cljs.js
+                        cljs.test
+                        uix.core uix.dom
+                        cognitect.transit com.cognitect.transit
+                        promesa.core
+                        reagent.core reagent.dom
+                        re-frame.core
+                        missionary.core
+                        bidi.bidi
+                        preo.core
+                        "react-query"
+                        "@react-three/fiber"
+                        #_"@react-three/drei"
+                        "react-router-dom"
+                        "three"
+                        "use-sync-external-store/with-selector"
+                        "react"
+                        "react-dom"
+                        "react-dom/client"
+                        "react-charts"]
+              :js-options {:minimize-require false}
+              :compiler-options {:output-wrapper false
+                                 :source-map true}
+              :build-hooks [(uix.playground.build-hook/dump-compiler-state)]}
+
+  #_#_
+  :backend {:target :esm
+            :runtime false
+            :output-dir "resources/cf"
+            :asset-path "/out"
+            :modules {:worker {:exports {default uix.cf.worker/handler}}}}}}

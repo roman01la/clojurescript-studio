@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -e
+set -o pipefail
+
+echo "Installing NPM deps..."
+yarn install --frozen-lockfile
+
+echo "Running Clojure tests..."
+clojure -A:test -M -m uix.test-runner
+
+echo "<div id=root></div><script src="out/main.js"></script>" > index.html
+
+echo "Building ClojureScript tests..."
+clojure -A:test:benchmark -M -m shadow.cljs.devtools.cli compile test
+
+echo "Running ClojureScript tests..."
+scripts/test.js $(pwd)
+
+echo "Building benchmark..."
+rm -rf out
+clojure -A:test:benchmark -M -m shadow.cljs.devtools.cli release benchmark
+
+echo "Running benchmark..."
+scripts/benchmark.js $(pwd)

@@ -1,0 +1,11 @@
+.idea
+*.iml
+.nrepl-port
+.clj-kondo
+.lsp
+node_modules
+.cpcache
+.shadow-cljs
+out
+out-release
+server_render_test

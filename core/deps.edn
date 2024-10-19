@@ -1,0 +1,17 @@
+{:deps {cljs-bean/cljs-bean {:mvn/version "1.8.0"}}
+ :paths ["src"]
+ :aliases {:dev {:extra-deps {cljfmt/cljfmt {:mvn/version "0.8.0"}}}
+           :test {:extra-paths ["test" "dev"]
+                  :extra-deps {org.clojure/clojure {:mvn/version "1.11.1"}
+                               org.clojure/clojurescript {:mvn/version "1.11.60"}
+                               thheller/shadow-cljs {:mvn/version "2.25.3"}
+                               uix.dom/uix.dom {:local/root "../dom"}
+                               cljsjs/react-dom-server {:mvn/version "16.13.1-0"}
+                               clj-diffmatchpatch/clj-diffmatchpatch {:mvn/version "0.0.9.3"}}}
+
+           :playground {:extra-paths ["dev"]
+                        :extra-deps {org.clojure/clojure {:mvn/version "1.11.1"}
+                                     org.clojure/clojurescript {:mvn/version "1.11.60"}
+                                     cljfmt/cljfmt {:mvn/version "0.9.2"}
+                                     thheller/shadow-cljs {:mvn/version "2.25.3"}
+                                     uix.dom/uix.dom {:local/root "../dom"}}}}}
